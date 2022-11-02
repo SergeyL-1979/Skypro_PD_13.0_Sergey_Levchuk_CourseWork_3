@@ -39,4 +39,3 @@ def add_bookmark(post_id):
 
 
 # pprint(get_bookmarks(BOOKMARKS_PATH))
-
