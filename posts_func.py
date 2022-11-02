@@ -54,9 +54,3 @@ def add_content(post):
     posts = get_posts_all()
     posts.append(post)
     save_json_post(posts)
-
-
-# pprint(get_all())
-# pprint(search_for_posts('дн'))
-# pprint(get_posts_by_user('johnny'))
-# pprint(get_post_by_pk(7))

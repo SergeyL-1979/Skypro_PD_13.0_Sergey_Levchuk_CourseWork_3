@@ -34,9 +34,3 @@ def add_comment(post_id, username, comment):
     new_comment = {"post_id": int(post_id), "commenter_name": username, "comment": comment, "pk": len(comments) + 1}
     comments.append(new_comment)
     save_json_comments(comments)
-
-
-# pprint(get_comments_all())
-# pprint(len(get_comments_by_post_id(4)))
-# pprint(get_comments_by_post_id(7))
-# pprint(add_comment(1, 'commenter_name', 'comment'))
