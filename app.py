@@ -8,9 +8,6 @@ from api.views import api_blueprint
 
 app = Flask(__name__)
 app.config.from_pyfile('config.py')
-# app.config['MAX_CONTENT_LENGTH'] = 2 * 1024 * 1024
-# app.config['UPLOAD_FOLDER'] = config.UPLOAD_FOLDER
-# app.config['JSON_AS_ASCII'] = False
 
 app.register_blueprint(main_bp, url_prefix='/')
 app.register_blueprint(api_blueprint)
