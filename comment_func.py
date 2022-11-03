@@ -13,14 +13,27 @@ def get_comments_all(path=config.COMMENT_PATH):
     return data
 
 
+# def get_comments_by_post_id(post_id):
+#     """ – возвращает комментарии определенного поста. Функция должна вызывать ошибку ValueError если такого
+#     поста нет и пустой список, если у поста нет комментов. """
+#     post_ids = []
+#     comments_posts = get_comments_all(config.COMMENT_PATH)
+#     for comment in comments_posts:
+#         if post_id == comment['post_id']:
+#             post_ids.append(comment)
+#     return post_ids
 def get_comments_by_post_id(post_id):
     """ – возвращает комментарии определенного поста. Функция должна вызывать ошибку ValueError если такого
     поста нет и пустой список, если у поста нет комментов. """
     post_ids = []
-    comments_posts = get_comments_all(config.COMMENT_PATH)
+    is_comment_exist = False
+    comments_posts = get_comments_all()
     for comment in comments_posts:
         if post_id == comment['post_id']:
             post_ids.append(comment)
+            is_comment_exist = True
+    if not is_comment_exist:
+        raise ValueError('Такого комментария не существует')
     return post_ids
 
 

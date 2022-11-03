@@ -3,7 +3,6 @@
 
 import json
 import config
-from pprint import pprint
 
 
 def get_posts_all(path=config.POST_PATH):
@@ -23,14 +22,27 @@ def search_for_posts(query):
     return content_search
 
 
+# def get_posts_by_user(user_name):
+#     """ Возвращает посты определенного пользователя. Функция должна вызывать ошибку ValueError если такого
+#     пользователя нет и пустой список, если у пользователя нет постов. """
+#     poster_name = []
+#     users_name = get_posts_all()
+#     for user in users_name:
+#         if user_name in user['poster_name']:
+#             poster_name.append(user)
+#     return poster_name
 def get_posts_by_user(user_name):
     """ Возвращает посты определенного пользователя. Функция должна вызывать ошибку ValueError если такого
     пользователя нет и пустой список, если у пользователя нет постов. """
     poster_name = []
+    is_user_exist = False
     users_name = get_posts_all()
     for user in users_name:
         if user_name in user['poster_name']:
             poster_name.append(user)
+            is_user_exist = True
+    if not is_user_exist:
+        raise ValueError('Такого пользователя не существует')
     return poster_name
 
 
