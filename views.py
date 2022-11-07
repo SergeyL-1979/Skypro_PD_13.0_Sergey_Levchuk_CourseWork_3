@@ -5,7 +5,7 @@ from flask import Blueprint, redirect, render_template, request
 from posts_func import get_posts_all, get_post_by_pk, search_for_posts, get_posts_by_user
 from comment_func import get_comments_by_post_id, add_comment
 from bookmarks_func import get_bookmarks, add_bookmark
-from hashtag import get_search_hashtag, get_hashtags
+from hashtags_fanc import get_hashtags, get_posts_by_tag
 
 main_bp = Blueprint('main_bp', __name__,  template_folder='templates', static_folder='static')
 
@@ -72,8 +72,8 @@ def remove_bookmark(post_id):
     return redirect("/", code=302)
 
 
-@main_bp.route('/tag/<tagname>')
-def get_by_tag(tagname):
-    tag_search = get_search_hashtag(tagname)
-    hashtag = get_hashtags(tag_search)
-    return render_template("tag.html", hashtag=hashtag, tag_search=tag_search)
+@main_bp.route('/tag/<tag_name>')
+def get_by_tag(tag_name):
+    # by_tag = get_posts_by_tag(tag_name)
+    hashtag = get_hashtags(tag_name)
+    return render_template("tag.html", hashtag=hashtag)

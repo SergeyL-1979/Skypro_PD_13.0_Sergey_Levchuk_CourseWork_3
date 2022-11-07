@@ -28,10 +28,10 @@
           </a>
         </div>
         <a href="/post.html" class="item__post-link">
-          <img src="/static/img/post4.jpg" alt="" width="348" class="item__post-img">
+          <img src="img/post4.jpg" alt="" width="348" class="item__post-img">
         </a>
-        <p class="item__descr"><a href="/tag.html" class="item__tag">#food</a> Текст описания коротки...</p>
-        <div class="item__post-info">
+        <p class="item__descr"><a href="/tag/" class="item__tag">#</a> {{ tag_search|truncate(50) }}</p>
+          <div class="item__post-info">
           <div class="item__counter">
             <img src="/static/img/eye.png" alt="" class="item__counter-icon" width="26">
             <span class="item__counter-text">212</span>
