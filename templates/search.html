@@ -46,7 +46,15 @@
         <a href="/post/{{ s.pk }}" class="item__post-link">
           <img src="{{ s.pic }}" alt="" width="348" class="item__post-img">
         </a>
-        <p class="item__descr"><a href="/tag" class="item__tag">#food</a>{{ s.content|safe|truncate(50) }}</p>
+          <p class="item__descr">
+            {% for h in s.content.split() %}
+                {% if h.startswith("#") %}
+                    <a href="/tag/{{ h.strip('#') }}">{{ h }}</a>
+                {% endif %}
+            {% endfor %}
+            {{ s.content|safe|truncate(50) }}</p>
+        <p class="item__descr" hidden>
+            <a href="/tag" class="item__tag">#food</a>{{ s.content|safe|truncate(50) }}</p>
         <div class="item__post-info">
           <div class="item__counter">
             <img src="/static/img/eye.png" alt="" class="item__counter-icon" width="26">

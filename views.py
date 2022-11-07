@@ -74,6 +74,6 @@ def remove_bookmark(post_id):
 
 @main_bp.route('/tag/<tag_name>')
 def get_by_tag(tag_name):
-    # by_tag = get_posts_by_tag(tag_name)
+    by_tag = get_posts_by_tag(tag_name)
     hashtag = get_hashtags(tag_name)
-    return render_template("tag.html", hashtag=hashtag)
+    return render_template("tag.html", hashtag=hashtag, by_tag=by_tag)
