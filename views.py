@@ -7,7 +7,7 @@ from comment_func import get_comments_by_post_id, add_comment
 from bookmarks_func import get_bookmarks, add_bookmark
 from hashtags_fanc import get_hashtags, get_posts_by_tag
 
-main_bp = Blueprint('main_bp', __name__,  template_folder='templates', static_folder='static')
+main_bp = Blueprint('main_bp', __name__, template_folder='templates', static_folder='static')
 
 
 @main_bp.route('/')
