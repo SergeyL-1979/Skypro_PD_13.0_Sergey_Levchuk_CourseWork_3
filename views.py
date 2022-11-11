@@ -24,7 +24,10 @@ def page_post(post_id):
 
     if not user_post:
         return f"Post не найден {post_id}"
-    return render_template("post.html", post=user_post, comments=comments, comments_count=comments_count)
+    return render_template("post.html", post=user_post,
+                           comments=comments,
+                           comments_count=comments_count,
+                           user_post=get_tags(user_post['content']))
 
 
 @main_bp.route('/post', methods=["POST"])
@@ -68,9 +71,17 @@ def add_bookmark(post_id):
 
 @main_bp.route('bookmarks/remove/<int:post_id>')
 def remove_bookmark(post_id):
-
     return redirect("/", code=302)
 
+
+#  1. Получить пост:
+#   user_post = get_post_by_pk(post_id)
+
+# 2. Преобразовать его контент в контент с хештегами
+#     user_post.content = get_tags(user_post.content)
+
+# 3. Отрендерить и отдать шаблон
+#   return render_template("post.html", post=user_post, comments=comments, comments_count=comments_count)
 
 @main_bp.route('/tag/<tag_name>')
 def get_by_tag(tag_name):

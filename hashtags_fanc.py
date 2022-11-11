@@ -31,8 +31,8 @@ def link_content():
     return str(hash_tag)
 
 
-d = link_content()
-pprint(get_tags(d))
+# d = link_content()
+# pprint(get_tags(d))
 
 # ==========================================================================
 # def get_posts_by_tag(tag_name):
