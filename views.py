@@ -4,7 +4,7 @@
 from flask import Blueprint, redirect, render_template, request
 from posts_func import get_posts_all, get_post_by_pk, search_for_posts, get_posts_by_user
 from comment_func import get_comments_by_post_id, add_comment
-from bookmarks_func import get_bookmarks, add_bookmark
+from bookmarks_func import get_bookmarks, add_bookmarks, remove_bookmarks, get_bookmark_post_id
 from hashtags_fanc import get_tags
 
 main_bp = Blueprint('main_bp', __name__, template_folder='templates', static_folder='static')
@@ -13,7 +13,8 @@ main_bp = Blueprint('main_bp', __name__, template_folder='templates', static_fol
 @main_bp.route('/')
 def page_index():
     all_posts = get_posts_all()
-    return render_template("index.html", posts=all_posts)
+    all_bookmarks = get_bookmarks()
+    return render_template("index.html", posts=all_posts, all_bookmarks=all_bookmarks)
 
 
 @main_bp.route('/post/<int:post_id>')
@@ -57,20 +58,23 @@ def search_post():
 @main_bp.route('/bookmarks')
 def all_bookmark():
     all_bookmarks = get_bookmarks()
-
-    return render_template("bookmarks.html", all_bookmarks=all_bookmarks)
+    posts = get_bookmark_post_id()
+    return render_template("bookmarks.html",
+                           all_bookmarks=all_bookmarks,
+                           posts=posts)
 
 
 @main_bp.route('/bookmarks/add/<int:post_id>')
 def add_bookmark(post_id):
-    bookmark = request.args.get('bm')
-    user_post = get_post_by_pk(post_id)
-    add_bookmark(bookmark, user_post)
+    # bookmark = request.args.get('bm')
+    # user_post = get_post_by_pk(post_id)
+    add_bookmarks(post_id)
     return redirect("/", code=302)
 
 
 @main_bp.route('bookmarks/remove/<int:post_id>')
 def remove_bookmark(post_id):
+    remove_bookmarks(post_id)
     return redirect("/", code=302)
 
 
@@ -88,5 +92,5 @@ def get_by_tag(tag_name):
     content = search_for_posts(tag_name)
     # by_tag = get_posts_by_tag(tag_name)
     # hashtag = get_hashtags(tag_name)
-    # return render_template("tag.html", hashtag=hashtag, by_tag=by_tag)
-    return get_tags(content)
+    return render_template("tag.html", by_tag=content)
+    # return get_tags(content)

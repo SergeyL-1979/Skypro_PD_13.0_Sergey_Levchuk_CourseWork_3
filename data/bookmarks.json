@@ -1,18 +1,10 @@
 [
     {
-        "post_id": 7,
+        "post_id": 1,
         "pk": 1
     },
     {
-        "post_id": 3,
+        "post_id": 6,
         "pk": 2
-    },
-    {
-        "post_id": 8,
-        "pk": 3
-    },
-    {
-        "post_id": 88,
-        "pk": 4
     }
 ]
