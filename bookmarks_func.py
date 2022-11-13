@@ -15,6 +15,7 @@ def get_bookmarks(path=config.BOOKMARKS_PATH):
 
 
 def get_bookmark_post_id():
+    """ Отображения постов из закладок - не работает """
     all_bookmarks = get_bookmarks()
     all_posts = get_posts_all()
 
