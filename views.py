@@ -72,9 +72,9 @@ def add_bookmark(post_id):
     return redirect("/", code=302)
 
 
-@main_bp.route('bookmarks/remove/<int:post_id>')
-def remove_bookmark(post_id):
-    remove_bookmarks(post_id)
+@main_bp.route('bookmarks/remove/<int:postid>')
+def remove_bookmark(postid):
+    remove_bookmarks(postid)
     return redirect("/", code=302)
 
 

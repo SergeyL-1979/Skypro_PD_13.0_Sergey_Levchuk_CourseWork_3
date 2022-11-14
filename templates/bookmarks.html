@@ -20,31 +20,31 @@
   </header>
   <main class="container">
     <section class="items">
-        {% for mark in all_bookmarks %}
+        {% for mark in posts %}
       <div class="items__item item">
         <div class="item__top">
           <a href="/users/{{ mark.poster_name }}" class="item__head">
             <div class="item__ava-wrap">
-              <img src="/static/img/ava1.png" alt="" class="item__ava" width="47">
+              <img src="{{ mark.poster_avatar }}" alt="" class="item__ava" width="47">
             </div>
-            <span class="item__username">skypro.08</span>
+            <span class="item__username">{{ mark.poster_name }}</span>
           </a>
-          <a href="/bookmarks/remove/{{ mark.post_id }}" class="item__delete">Удалить</a>
+          <a href="/bookmarks/remove/{{ mark.pk }}" class="item__delete">Удалить</a>
         </div>
         <a href="/post.html" class="item__post-link">
-          <img src="/static/img/post5.jpg" alt="" width="348" class="item__post-img">
+          <img src="{{ mark.pic }}" alt="" width="348" class="item__post-img">
         </a>
 
         <p class="item__descr">
-            {{ mark.post_id }}<a href="post/{{ mark.post_id }}" class="item__btn-more">Еще</a></p>
+            {{ mark.content|truncate(50) }}<a href="post/{{ mark.pk }}" class="item__btn-more">Еще</a></p>
         <div class="item__post-info">
           <div class="item__counter">
             <img src="/static/img/eye.png" alt="" class="item__counter-icon" width="26">
-            <span class="item__counter-text">212</span>
+            <span class="item__counter-text">{{ mark.views_count }}</span>
           </div>
         </div>
         <div class="item__post-bottom">
-          <a href="/post/" class="item__btn-more">Подробнее</a>
+          <a href="/post/{{ mark.pk }}" class="item__btn-more">Подробнее</a>
           <button type="button" class="item__bookmark-btn">
             <img src="/static/img/bookmark.png" alt="" class="item__bookmark-icon" width="24">
           </button>
