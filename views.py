@@ -66,31 +66,18 @@ def all_bookmark():
 
 @main_bp.route('/bookmarks/add/<int:post_id>')
 def add_bookmark(post_id):
-    # bookmark = request.args.get('bm')
-    # user_post = get_post_by_pk(post_id)
     add_bookmarks(post_id)
     return redirect("/", code=302)
 
 
-@main_bp.route('bookmarks/remove/<int:postid>')
-def remove_bookmark(postid):
-    remove_bookmarks(postid)
+@main_bp.route('bookmarks/remove/<int:post_id>')
+def remove_bookmark(post_id):
+    remove_bookmarks(post_id)
     return redirect("/", code=302)
 
-
-#  1. Получить пост:
-#   user_post = get_post_by_pk(post_id)
-
-# 2. Преобразовать его контент в контент с хештегами
-#     user_post.content = get_tags(user_post.content)
-
-# 3. Отрендерить и отдать шаблон
-#   return render_template("post.html", post=user_post, comments=comments, comments_count=comments_count)
 
 @main_bp.route('/tag/<tag_name>')
 def get_by_tag(tag_name):
     content = search_for_posts(tag_name)
-    # by_tag = get_posts_by_tag(tag_name)
-    # hashtag = get_hashtags(tag_name)
     return render_template("tag.html", by_tag=content)
-    # return get_tags(content)
+
